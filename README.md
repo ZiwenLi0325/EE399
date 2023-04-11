@@ -16,7 +16,7 @@ This homework assignment is first homework for introduction to machine learning 
 
 The theoretical background for this homework assignment includes the concept of least-squares error and its application to model fitting. We use the following model to fit the data:
 
-[label](blob:vscode-webview%3A//1l7f46p14om0sleh1569itfstue3mmufi1g9rhk5dqnjmqh8png7/81b671d4-b40c-4c5e-86fc-50aae68db7d5)
+!['figure2.png'](hw1\figure2.png)
 
 f(x) = A cos(Bx) + Cx + D
 
