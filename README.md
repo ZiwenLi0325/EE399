@@ -16,6 +16,8 @@ This homework assignment is first homework for introduction to machine learning 
 
 The theoretical background for this homework assignment includes the concept of least-squares error and its application to model fitting. We use the following model to fit the data:
 
+[label](blob:vscode-webview%3A//1l7f46p14om0sleh1569itfstue3mmufi1g9rhk5dqnjmqh8png7/81b671d4-b40c-4c5e-86fc-50aae68db7d5)
+
 f(x) = A cos(Bx) + Cx + D
 
 The goal is to find the parameters A, B, C, and D that minimize the error of the model using the provided data. We also use the training and test data to evaluate the performance of different models, including a line, parabola, and 19th degree polynomial.
@@ -23,6 +25,7 @@ The goal is to find the parameters A, B, C, and D that minimize the error of the
 ## Algorithm Implementation and Development
 
 For part (i) of the homework, we use the provided data and the least-squares error function to find the parameters A, B, C, and D that minimize the error of the model. We use the scipy.optimize.minimize function to minimize the error function and print out the results.
+[label](blob:vscode-webview%3A//1l7f46p14om0sleh1569itfstue3mmufi1g9rhk5dqnjmqh8png7/a5e03c7e-c8da-4306-96ba-2b6e45012d45)
 
 For part (ii), we fix two parameters and sweep through values of the other two parameters to generate a 2D loss landscape. We use the matplotlib.pcolor function to visualize the results in a grid.
 
