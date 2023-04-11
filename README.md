@@ -42,12 +42,12 @@ For part (ii), we sweep through values of two parameters while fixing the other 
 ![figure2](hw1/figure7.SVG)
 ![figure2](hw1/figure8.SVG)
 
-For parts (iii), we fit a line, parabola, and 19th degree polynomial to the training data with first 20 truncated data and evaluate their performance on the rest of test data. We find that the 19th degree polynomial has the lowest error on the training data but performs poorly on the test data, indicating overfitting. The line and parabola have similar performance on both the training and test data, with the line slightly outperforming the parabola.
+For parts (iii), we fit a line, parabola, and 19th degree polynomial to the training data with first 20 truncated data and evaluate their performance on the rest of test data. We find that the 19th degree polynomial has the lowest error on the training data but performs poorly on the test data, indicating overfitting. The line and parabola have similar performance on both the training and test data, with the line slightly outperforming the parabola. The fits of all models are shown below. We can notice that while linear and parabola are not good fit, and 19th order is totally overfit.
 
 ![figure2](hw1/figure9.SVG)
 ![figure2](hw1/figure10.SVG)
 ![figure2](hw1/figure11.SVG)
-For parts (iv), we fit a line, parabola, and 19th degree polynomial to the training data with first 10 truncated data and last 10 truncated data evaluate their performance on the test data, the middle 10 of data set. We find that the 19th degree polynomial still has the lowest error on the training data but performs poorly on the test data, indicating overfitting. However, the error for (iv) is significantly less than the error in (iii). The line and parabola have similar performance on both the training and test data, with the line slightly outperforming the parabola.
+For parts (iv), we fit a line, parabola, and 19th degree polynomial to the training data with first 10 truncated data and last 10 truncated data evaluate their performance on the test data, the middle 10 of data set. We find that the 19th degree polynomial still has the lowest error on the training data but performs poorly on the test data, indicating overfitting. However, the error for (iv) is significantly less than the error in (iii). The line and parabola have similar performance on both the training and test data, with the line slightly outperforming the parabola.We can notice that while linear and parabola are not good fit and they are pretty similar due to the boarder domain of x, and 19th order is totally overfit in the middle.
 
 ![figure2](hw1/figure12.SVG)
 ![figure2](hw1/figure13.SVG)
