@@ -16,7 +16,7 @@ This homework assignment is first homework for introduction to machine learning 
 
 The theoretical background for this homework assignment includes the concept of least-squares error and its application to model fitting. We use the following model to fit the data:
 
-!['figure2.png'](hw1\figure2.png)
+![figure2.png](hw1\figure2.png)
 
 f(x) = A cos(Bx) + Cx + D
 
