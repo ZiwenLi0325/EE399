@@ -279,3 +279,24 @@ and corresponding principal components,
  Noting that the square of the above singular values are the eigenvalues from part (d).
 
 ### Part (f)
+We will have $u_1$ =
+```
+[-0.02384327 -0.02576146 -0.02728448 ... -0.02082937 -0.0193902  -0.0166019 ]
+```
+and $v_1$ =
+```
+[0.02384327 0.02576146 0.02728448 ... 0.02082937 0.0193902  0.0166019 ]
+```
+They are basically same in magnitude but have different directions. The difference of norm between u_1 and v_1 is 6.535857028199339e-16. This is a extreme small norm.
+
+### Part (g)
+```
+Percentage of variance captured by each mode:
+Mode 1: 77.68%
+Mode 2: 16.28%
+Mode 3: 2.73%
+Mode 4: 2.00%
+Mode 5: 0.68%
+Mode 6: 0.63%
+```
+We can notice that if we add them up, we will have 1, which indicates that the first 6 feature can roughly form all the images.
