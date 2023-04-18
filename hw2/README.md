@@ -43,10 +43,85 @@ for i in range(100):
         C[i,j] = np.dot(X[:,i],X[:,j])
 ```
 We can then plot the correlation matrix using the pcolor function.
-
+```
+plt.pcolor(C)
+plt.colorbar()
+```
 Part (b)
 To identify the most highly correlated and uncorrelated images from the correlation matrix C, we can find the maximum and minimum values of the matrix and their corresponding indices. We can then plot these images using the imshow function.
 
+For the most correlated images, we have 
+```
+# Create a copy of the correlation matrix C
+C_remove = C.copy()
+
+# Find the indices of the largest entry in the correlation matrix
+i, j = np.unravel_index(C_remove.argmax(), C_remove.shape)
+
+# Set the diagonal elements of the correlation matrix to zero
+np.fill_diagonal(C_remove, 0)
+
+# Find the indices of the largest entry in the modified correlation matrix
+i, j = np.unravel_index(C_remove.argmax(), C_remove.shape)
+
+
+
+# Display the two most correlated images side by side
+plt.subplot(1,2,1)
+print_copy = X[:,i]
+plt.title("Image i")
+plt.imshow(print_copy.reshape([32,32]),cmap = "gray")
+plt.subplot(1,2,2)
+print_copy = X[:,j]
+plt.imshow(print_copy.reshape([32,32]),cmap = "gray")
+plt.legend()
+
+# Add a descriptive caption to the plot
+plt.text(0, -0.15, 'Figure 2: The image on the left is image i and the image on the right is image j. They have the highest values \nin correlation matrix, which means that they are most correlated.', ha='center', fontsize=12, transform=plt.gca().transAxes)
+
+# Set the size of the figure and add titles
+plt.gcf().set_size_inches(12, 8)
+plt.title("Image j")
+plt.suptitle("Most correlated images",y = 0.85)
+
+# Save the plot to a file
+plt.savefig("figure2.png")
+
+```
+
+For the least correlated images, we have 
+```
+# Find the index i,j with the smallest entry
+small = 100
+for i in range(100):
+    for j in range(100):
+        if C[i,j] < small and i!=j:
+            small = C[i,j] 
+            i_index = i
+            j_index = j
+print(f"The index i,j with the smallest entry is ({i_index}, {j_index})")
+# Display the two least correlated images side by side
+plt.subplot(1,2,1)
+print_copy = X[:,54]
+plt.title("Image 86")
+plt.imshow(print_copy.reshape([32,32]),cmap = "gray")
+plt.subplot(1,2,2)
+print_copy = X[:,64]
+plt.imshow(print_copy.reshape([32,32]),cmap = "gray")
+plt.legend()
+
+# Add a descriptive caption to the plot
+plt.text(0, -0.15, 'Figure 3: The image on the left is image 54 and the image on the right is image 64. They have the least values \nin correlation matrix, which means that they are least correlated.', ha='center', fontsize=12, transform=plt.gca().transAxes)
+
+# Set the size of the figure and add titles
+plt.gcf().set_size_inches(12, 8)
+plt.title("Image 88")
+plt.suptitle("Least correlated images",y = 0.85)
+
+# Save the plot to a file
+plt.savefig("figure3.png")
+
+```
 Part (c)
 To compute a 10 × 10 correlation matrix between images, we can repeat the procedure in part (a) with the first 10 images in the matrix X.
 
