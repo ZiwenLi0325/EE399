@@ -35,12 +35,13 @@ where U and V are orthogonal matrices, and Σ is a diagonal matrix containing th
 # III. Algorithm Implementation and Development
 Part (a)
 To compute a 100 × 100 correlation matrix C between the first 100 images in the matrix X, we can use the following code:
-'''
+
+```
 C = np.zeros([100,100])
 for i in range(100):
     for j in range(100):
         C[i,j] = np.dot(X[:,i],X[:,j])
-'''
+```
 We can then plot the correlation matrix using the pcolor function.
 
 Part (b)
@@ -56,5 +57,4 @@ Part (e)
 To find the first six principal component directions using SVD, we can compute the SVD of the matrix X and extract the first six columns of the U matrix.
 
 Part (f)
-To compare the first eigenvector v1 from part (d) with the first SVD mode u1 from part (e) and compute the norm of the difference of their absolute values,
-
+To compare the first eigenvector v1 from part (d) with the first SVD mode u1 from part (e) and compute the norm of the difference of their absolute values
