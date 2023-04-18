@@ -33,7 +33,7 @@ $X = U \Sigma V^*$
 where U and V are orthogonal matrices, and Σ is a diagonal matrix containing the singular values of X.
 
 # III. Algorithm Implementation and Development
-Part (a)
+### Part (a)
 To compute a 100 × 100 correlation matrix C between the first 100 images in the matrix X, we can use the following code:
 
 ```
@@ -47,7 +47,7 @@ We can then plot the correlation matrix using the pcolor function.
 plt.pcolor(C)
 plt.colorbar()
 ```
-Part (b)
+### Part (b)
 To identify the most highly correlated and uncorrelated images from the correlation matrix C, we can find the maximum and minimum values of the matrix and their corresponding indices. We can then plot these images using the imshow function.
 
 For the most correlated images, we have 
@@ -122,7 +122,7 @@ plt.suptitle("Least correlated images",y = 0.85)
 plt.savefig("figure3.png")
 
 ```
-Part (c)
+### Part (c)
 To compute a 10 × 10 correlation matrix between images, we can repeat the procedure in part (a) with the first 10 images in the matrix X.
 ```
 array_index = [1, 313, 512, 5, 2400, 113, 1024, 87, 314, 2005] 
@@ -141,7 +141,7 @@ plt.title("10x10 correlation matrix")
 plt.savefig("figure4.png")
 ```
 
-Part (d)
+### Part (d)
 To find the first six eigenvectors with the largest magnitude eigenvalue, we can create the matrix Y = $X*X^T$ and compute its eigenvectors and eigenvalues using the eig function.
 ```
 Y = np.matmul(X,np.transpose(X))
@@ -150,7 +150,7 @@ largest_indices = np.argsort(np.abs(eigenvalues))[::-1][:6]
 largest_eigenvectors = eigenvectors[:, largest_indices]
 ```
 
-Part (e)
+### Part (e)
 To find the first six principal component directions using SVD, we can compute the SVD of the matrix X and extract the first six columns of the U matrix.
 ```
 # Perform SVD on X
@@ -167,7 +167,7 @@ for i in range(6):
     pc = PCs[:, i]
 ```
 
-Part (f)
+### Part (f)
 To compare the first eigenvector v1 from part (d) with the first SVD mode u1 from part (e) and compute the norm of the difference of their absolute values
 ```
 u_1 = U[:,0]
@@ -175,7 +175,7 @@ v_1 = eigenvectors[:,0]
 l2_norm = np.sqrt(np.sum(np.square(np.abs(u_1)-np.abs(v_1))))
 ```
 
-Part (g)
+### Part (g)
 To compute the percentage of variance captured by each of the first 6 SVD modes, we first need to compute the singular value decomposition of the matrix X. We can use the numpy function np.linalg.svd() for this purpose. Once we have the SVD, we can compute the total sum of squared deviations from the mean of the data, which is given by the sum of the squared singular values. We can then compute the percentage of variance captured by each SVD mode by dividing the square of the singular value by the total sum of squared deviations.
 
 To plot the first 6 SVD modes, we can simply plot the first 6 columns of the U matrix obtained from the SVD.
@@ -215,3 +215,67 @@ for i in range(6):
     print('Mode {}: {:.2f}%'.format(i+1, var_captured[i]))
 
 ```
+## Computational Results
+### Part (a)
+For the part (a) question, we have a correlation matrix, C, shown below in figure 1. It is computed directly from inner product of matrix X,
+
+![figure1](figure1.png)
+
+In this pcolor plot, we have the visulization about general distribution of the correlation. Noting that there is a line along the diagnoal, which indicates the image inner product of itself. The lighter the pixel is, the more correlated the images at i and j are.
+
+### Part (b)
+For the part (b) question, the most correlated image is shown below in figure 2. We can clearly tell the similarities shared by these two images.
+
+![figure2](figure2.png)
+
+In addition, the least correlated image is shown below in figure 3. The second image does not express the clear features shared by the first image .
+
+![figure3](figure3.png)
+
+### Part (c)
+For the part (c) question, we have a smaller correlation matrix, C, shown below in figure 4. 
+
+![figure1](figure4.png)
+
+In this pcolor plot, we have the visulization about general distribution of the correlation in detail. For example, the index [1,5] has the lightest color beside the diagnoal values. Therefore, we can conclude that these two images are most correlated.
+
+### Part (d)
+For the part (d) question, we have the result from the eigenvalue decomposition, and the followings are eigenvalues,
+```
+[234020.45485389  49038.31530059   8236.53989701   6024.87145793
+   2051.49643269   1901.07911482]
+```
+and corresponding eigenvectors.
+```
+[[ 0.02384327  0.04535378  0.05653196  0.04441826 -0.03378603  0.02207542]
+ [ 0.02576146  0.04567536  0.04709124  0.05057969 -0.01791442  0.03378819]
+ [ 0.02728448  0.04474528  0.0362807   0.05522219 -0.00462854  0.04487476]
+ [ 0.0289902   0.04316163  0.02344727  0.05744188  0.00932899  0.05424285]
+ [ 0.03057294  0.04080838  0.00992662  0.05720359  0.02096932  0.06259919]
+ [ 0.03229324  0.03805116 -0.00241627  0.05372178  0.02766062  0.0694475 ]]
+ ```
+
+### Part (e)
+For the part (e) question, we have the result from the singular value decomposition, and the followings are singular values,
+```
+[483.75660704 221.44596474  90.75538495  77.62004546  45.29344801
+  43.60136597]
+```
+and corresponding principal components,
+```
+[[-0.02384327  0.04535378  0.05653196 ... -0.00238077 -0.0015886
+ 0.00041024]
+ [-0.02576146  0.04567536  0.04709124 ...  0.00265168  0.00886966
+  -0.0047811 ]
+ [-0.02728448  0.04474528  0.0362807  ... -0.00073077 -0.00706009
+   0.00678472]
+ [-0.0289902   0.04316163  0.02344727 ... -0.00367797  0.00323748
+   0.00077172]
+ [-0.03057294  0.04080838  0.00992662 ...  0.00988825 -0.00657576
+   0.00607428]
+ [-0.03229324  0.03805116 -0.00241627 ... -0.01055232  0.00471235
+  -0.00872253]]
+ ```
+ Noting that the square of the above singular values are the eigenvalues from part (d).
+
+### Part (f)
