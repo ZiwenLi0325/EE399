@@ -300,3 +300,19 @@ Mode 5: 0.68%
 Mode 6: 0.63%
 ```
 We can notice that if we add them up, we will have 1, which indicates that the first 6 feature can roughly form all the images.
+
+## Summary and Conclusions
+
+In this project, we analyzed a dataset of 2414 faces from the Yale Faces dataset. The individual images were columns of a matrix X, where each image was downsampled to 32x32 pixels and converted to grayscale with values between 0 and 1.
+
+First, we computed a 100x100 correlation matrix C by computing the dot product between the first 100 images in X. We then plotted the correlation matrix using pcolor. From this matrix, we found the two most highly correlated images and the two most uncorrelated images, which we plotted.
+
+Next, we repeated the above analysis but computed a 10x10 correlation matrix between images [1, 313, 512, 5, 2400, 113, 1024, 87, 314, 2005] in X. We then plotted the correlation matrix between these images.
+
+In part (d), we created a matrix Y = XXT and found the first six eigenvectors with the largest magnitude eigenvalue. In part (e), we performed SVD on the matrix X and found the first six principal component directions.
+
+In part (f), we compared the first eigenvector v1 from part (d) with the first SVD mode u1 from part (e) and computed the norm of the difference of their absolute values.
+
+Finally, in part (g), we computed the percentage of variance captured by each of the first six SVD modes and plotted the first six SVD modes.
+
+Overall, our analysis provides insight into the correlation structure of the faces dataset and demonstrates the use of various linear algebra techniques such as SVD and eigendecomposition for analyzing high-dimensional datasets.
