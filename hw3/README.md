@@ -157,12 +157,20 @@ print("Decision Tree: {:.2f}%".format(accuracy_dtc * 100))
 ```
 ## Computational Results
 Our analysis of the singular value spectrum indicates that the first 50 modes capture the majority of the variance in the digit space. We plot the data projected onto three selected V-modes and observe that the digits are well-separated in the PCA space.
+
 1.![figure1](singular_val.png)
+
 2.![figure2](singular_val_var.png)
-Figure 1 is the singular value distribution from SVD, and figure 2 is the variance of singular values. The plot give the 
+
 3.![figure3](3D_plot.png)
+
+ Figure 1 shows the distribution of singular values from SVD, and Figure 2 shows the variance of singular values. From these plots, we can see that the first 50 singular values have significantly higher values compared to the rest, indicating that the majority of the variance is captured by these modes.
+
+Figure 3 shows the projection of the digit data onto three selected V-modes. We can observe that the digits are well-separated in the PCA space, indicating that the principal components effectively capture the variation in the digit data.
+
 4.![figure4](Claasification.png)
-For the classification tasks, we find that LDA performs well on both the two-digit and three-digit classification tasks, achieving an accuracy of over 95% on the test set. The most difficult pair of digits to separate are 4s and 9s, with an accuracy of only 85% on the test set, while the easiest pair to separate are 0s and 1s, with an accuracy of over 99% on the test set. We compare the performance of LDA, SVM, and decision trees on these pairs of digits and find that LDA outperforms both SVM and decision trees in terms of accuracy, precision, recall, and F1 score.
+
+For the classification, we attempted to build a linear classifier to identify the two digits 1,7 and three digits 2, 3, and 8. We achieved an accuracy score of 0.99 for two digits and 0.935 for three digits, indicating that the classifier is fairly accurate at distinguishing these digits.
 ```
 Accuracy scores for LDA, SVM, and decision tree classifiers on digits 0 vs 5:
 LDA: 99.53%
