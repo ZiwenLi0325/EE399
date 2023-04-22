@@ -30,13 +30,13 @@ np.linalg.matrix_rank(X)
 ## 3. Interpretation 
 U is an orthogonal matrix whose columns represent the eigenvectors of XX^T. These eigenvectors represent the principal components of the data set X, and the columns of U represent how each data point can be expressed in terms of these principal components. Thus, U can be thought of as a new coordinate system for the data set.
 
-Σ is a diagonal matrix that contains the singular values of X. These singular values represent the amount of variation in the data set that is captured by each principal component. The singular values are ordered from largest to smallest, so the first singular value represents the most important principal component, the second singular value represents the second most important principal component, and so on.
+S is a diagonal matrix that contains the singular values of X. These singular values represent the amount of variation in the data set that is captured by each principal component. The singular values are ordered from largest to smallest, so the first singular value represents the most important principal component, the second singular value represents the second most important principal component, and so on.
 
-V is an orthogonal matrix whose columns represent the eigenvectors of X^TX. These eigenvectors represent the contribution of each original variable to the principal components.
+Vt is an orthogonal matrix whose columns represent the eigenvectors of X^TX. These eigenvectors represent the contribution of each original variable to the principal components.
 
 Overall, the SVD allows us to express a data set in terms of its principal components, which can help us understand the underlying structure of the data and reduce its dimensionality for further analysis
 
-For the classification tasks, we first preprocess the data by normalizing the pixel values to have zero mean and unit variance. We then train and test several classifiers, including LDA, SVM, and decision trees, using both the training and test sets. We analyze the performance of each classifier in terms of accuracy, precision, recall, and F1 score.
+
 ## 4. 3D plot
 On a 3D plot, project onto three selected V-modes (columns) colored by their digit label.
 ```
@@ -60,7 +60,8 @@ plt.gcf().set_size_inches(12, 8)
 plt.savefig("3D_plot.png")
 plt.show()
 ```
-
+## Classification
+For the classification tasks, we train and test the classifiers, including LDA, SVM, and decision trees, using both the training and test sets. We analyze the performance of each classifier in terms of accuracy.
 ## Two Digits Linear Classifier
 • The given code trains and tests an LDA model for a specific pair of digits in the MNIST dataset. First, a binary classification dataset is created containing only the two specified digits. The dataset is split into training and testing sets using the train_test_split function. An LDA object is created and fit to the training data. The model is then used to predict the labels of the test data, and the confusion matrix and classification report are computed. The accuracy of the model for each digit is also calculated separately and printed to the console. This implementation demonstrates how to use LDA for binary classification tasks and evaluate its performance on specific digits in the MNIST dataset.Below is the code to train the data and test for specific digit
 ```
