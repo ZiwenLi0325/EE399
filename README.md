@@ -10,5 +10,6 @@ Homework Set 1: [Least-Squares Fitting](https://github.com/ZiwenLi0325/EE399/tre
 
 Homework Set 2: [Face Image Analysis using Correlation, Eigenvalue Decomposition, and Singular Value Decomposition](https://github.com/ZiwenLi0325/EE399/tree/main/hw2)
 
+Homework Set 3: [Analysis of MNIST Data Set](https://github.com/ZiwenLi0325/EE399/tree/main/hw3)
 
 
