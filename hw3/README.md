@@ -168,7 +168,7 @@ Our analysis of the singular value spectrum indicates that the first 50 modes ca
 
 Figure 3 shows the projection of the digit data onto three selected V-modes. We can observe that the digits are well-separated in the PCA space, indicating that the principal components effectively capture the variation in the digit data.
 
-4.![figure4](Claasification.png)
+4.![figure4](Classification.png)
 
 For the classification, we attempted to build a linear classifier to identify the two digits 1,7 and three digits 2, 3, and 8. We achieved an accuracy score of 0.99 for two digits and 0.935 for three digits, indicating that the classifier is fairly accurate at distinguishing these digits.
 ```
