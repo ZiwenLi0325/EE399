@@ -13,21 +13,21 @@ The MNIST data set is a classic benchmark in the field of machine learning and c
 ## II. Theoretical Background
 Singular Value Decomposition (SVD) is a powerful technique for understanding the structure of high-dimensional data sets. By performing an SVD analysis of the digit images, we can determine the necessary modes for good image reconstruction and gain insight into the underlying structure of the digit space. Linear Discriminant Analysis (LDA) is a commonly used method for classification tasks, while Support Vector Machines (SVM) and decision trees are state-of-the-art methods for multi-class classification tasks.
 
-# III. Algorithm Implementation and Development
+## III. Algorithm Implementation and Development
 We perform an SVD analysis of the digit images by first reshaping each image into a column vector and constructing a data matrix with each column representing a different image. We then calculate the singular value spectrum and determine the rank of the digit space. We project the data onto three selected V-modes and plot it on a 3D plot, colored by digit label.
-## 1. SVD
+### 1. SVD
 In the SVD (singular value decomposition) analysis, the matrix X can be decomposed into three matrices: U, Σ, and V.
 ```
 U, S, Vt = np.linalg.svd(X)
 ```
 
-## 2. Spectrum
+### 2. Spectrum
 In this task, we want the singular value spectrum and check how many modes are necessary for good image reconstruction. We can do this by calculating the rank of the matrix to check the non-zero singular values
 ```
 np.linalg.matrix_rank(X)
 ```
 
-## 3. Interpretation 
+### 3. Interpretation 
 U is an orthogonal matrix whose columns represent the eigenvectors of XX^T. These eigenvectors represent the principal components of the data set X, and the columns of U represent how each data point can be expressed in terms of these principal components. Thus, U can be thought of as a new coordinate system for the data set.
 
 S is a diagonal matrix that contains the singular values of X. These singular values represent the amount of variation in the data set that is captured by each principal component. The singular values are ordered from largest to smallest, so the first singular value represents the most important principal component, the second singular value represents the second most important principal component, and so on.
@@ -37,7 +37,7 @@ Vt is an orthogonal matrix whose columns represent the eigenvectors of X^TX. The
 Overall, the SVD allows us to express a data set in terms of its principal components, which can help us understand the underlying structure of the data and reduce its dimensionality for further analysis
 
 
-## 4. 3D plot
+### 4. 3D plot
 On a 3D plot, project onto three selected V-modes (columns) colored by their digit label.
 ```
 # Select three V-modes
@@ -60,9 +60,9 @@ plt.gcf().set_size_inches(12, 8)
 plt.savefig("3D_plot.png")
 plt.show()
 ```
-## Classification
+### Classification
 For the classification tasks, we train and test the classifiers, including LDA, SVM, and decision trees, using both the training and test sets. We analyze the performance of each classifier in terms of accuracy.
-## Two Digits Linear Classifier
+### Two Digits Linear Classifier
 • The given code trains and tests an LDA model for a specific pair of digits in the MNIST dataset. First, a binary classification dataset is created containing only the two specified digits. The dataset is split into training and testing sets using the train_test_split function. An LDA object is created and fit to the training data. The model is then used to predict the labels of the test data, and the confusion matrix and classification report are computed. The accuracy of the model for each digit is also calculated separately and printed to the console. This implementation demonstrates how to use LDA for binary classification tasks and evaluate its performance on specific digits in the MNIST dataset.Below is the code to train the data and test for specific digit
 ```
 # Create a binary classification dataset for the two digits
@@ -92,7 +92,7 @@ print(f"Accuracy for digit {digit1}: {acc_digit1}")
 print(f"Accuracy for digit {digit2}: {acc_digit2}")
 ```
 
-## Two Digits Separation
+### Two Digits Separation
 • The below code tests the ability of LDA to separate the digits 0 and 5 from the MNIST dataset. First, the dataset is filtered to only include images of digit 0 and 5. Then, the data is split into training and test sets using the train_test_split() function from scikit-learn. LDA is then fit to the training data using the LDA() function. The model is then used to predict the labels of the test data using the predict() method. Finally, the accuracy of the model is computed using the accuracy_score() function from scikit-learn and printed to the console. The resulting accuracy is a measure of how well the LDA model is able to distinguish between the digits 0 and 5. Below is the code to test the ability to seperate the digits
 ```
 # Define X and y
@@ -121,7 +121,7 @@ accuracy = accuracy_score(y_test, y_pred)
 print("Accuracy for separating digit 0 and digit 5: {:.3f}".format(accuracy))
 ```
 
-## Performance Analysis
+### Performance Analysis
 • The code first selects the two digits (0 and 1) that are considered the hardest and easiest to separate. It then retrieves the corresponding images and labels from the MNIST dataset. The data is then split into training and testing sets using a 80/20 split.
 
 Next, three classifiers are trained on the training set: LDA, SVM, and decision tree classifiers. The LDA classifier uses the LDA() function to fit the model to the training data. The SVM classifier uses the SVC() function with a linear kernel and a regularization parameter C=1 to fit the model to the training data. The decision tree classifier uses the DecisionTreeClassifier() function with a max depth of 5 to fit the model to the training data.
@@ -165,6 +165,7 @@ print("SVM: {:.2f}%".format(accuracy_svm * 100))
 print("Decision Tree: {:.2f}%".format(accuracy_dtc * 100))
 ```
 ## Computational Results
+### Analysis
 Our analysis of the singular value spectrum indicates that the first 50 modes capture the majority of the variance in the digit space. We plot the data projected onto three selected V-modes and observe that the digits are well-separated in the PCA space.
 
 1.![figure1](singular_val.png)
@@ -176,8 +177,8 @@ Our analysis of the singular value spectrum indicates that the first 50 modes ca
  Figure 1 shows the distribution of singular values from SVD, and Figure 2 shows the variance of singular values. From these plots, we can see that the first 50 singular values have significantly higher values compared to the rest, indicating that the majority of the variance is captured by these modes.
 
 Figure 3 shows the projection of the digit data onto three selected V-modes. We can observe that the digits are well-separated in the PCA space, indicating that the principal components effectively capture the variation in the digit data.
-
-4.![figure4](Classification.png)
+### Classification
+![figure4](Classification.png)
 
 For the classification, we attempted to build a linear classifier to identify the two digits 1,7 and three digits 2, 3, and 8. We achieved an accuracy score of 0.99 for two digits and 0.935 for three digits, indicating that the classifier is fairly accurate at distinguishing these digits.
 ```
@@ -188,4 +189,4 @@ Decision Tree: 99.80%
 ```
 From the accuracy scores above, we can notice that the SVM will provide the best accuracy for seperating two digits; desicion tree will be ranking in second place and LDA perform least successfully among the three, but still give great accuracy score.
 ## Summary and Conclusions
-In this report, we have performed an analysis of the MNIST data set and built several classifiers to identify individual digits in the training set. We have found that LDA is a powerful method for classification tasks and outperforms both SVM and decision trees in terms of accuracy, precision, recall, and F1 score. Our analysis of the singular value spectrum indicates that the first 50 modes capture
+In this hw, we have performed an analysis of the MNIST data set and built several classifiers including LDA, SVM, and decision tree classifiers to identify individual digits in the training set. We have found that SVM is a powerful method for classification tasks, especially for classifying the digits, and outperforms both LDA and decision trees in terms of accuracy. Our analysis of the singular value spectrum indicates that the first 50 modes capture almost all the feature that a handwritten digits can have.
