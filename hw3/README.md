@@ -15,18 +15,20 @@ Singular Value Decomposition (SVD) is a powerful technique for understanding the
 
 # III. Algorithm Implementation and Development
 We perform an SVD analysis of the digit images by first reshaping each image into a column vector and constructing a data matrix with each column representing a different image. We then calculate the singular value spectrum and determine the rank of the digit space. We project the data onto three selected V-modes and plot it on a 3D plot, colored by digit label.
-1.
+## 1. SVD
 In the SVD (singular value decomposition) analysis, the matrix X can be decomposed into three matrices: U, Σ, and V.
 ```
 U, S, Vt = np.linalg.svd(X)
 ```
 
-2. In this task, we want the singular value spectrum and check how many modes are necessary for good image reconstruction. We can do this by calculating the rank of the matrix to check the non-zero singular values
+## 2. Spectrum
+In this task, we want the singular value spectrum and check how many modes are necessary for good image reconstruction. We can do this by calculating the rank of the matrix to check the non-zero singular values
 ```
 np.linalg.matrix_rank(X)
 ```
 
-3.U is an orthogonal matrix whose columns represent the eigenvectors of XX^T. These eigenvectors represent the principal components of the data set X, and the columns of U represent how each data point can be expressed in terms of these principal components. Thus, U can be thought of as a new coordinate system for the data set.
+## 3. Interpretation 
+U is an orthogonal matrix whose columns represent the eigenvectors of XX^T. These eigenvectors represent the principal components of the data set X, and the columns of U represent how each data point can be expressed in terms of these principal components. Thus, U can be thought of as a new coordinate system for the data set.
 
 Σ is a diagonal matrix that contains the singular values of X. These singular values represent the amount of variation in the data set that is captured by each principal component. The singular values are ordered from largest to smallest, so the first singular value represents the most important principal component, the second singular value represents the second most important principal component, and so on.
 
@@ -35,7 +37,8 @@ V is an orthogonal matrix whose columns represent the eigenvectors of X^TX. Thes
 Overall, the SVD allows us to express a data set in terms of its principal components, which can help us understand the underlying structure of the data and reduce its dimensionality for further analysis
 
 For the classification tasks, we first preprocess the data by normalizing the pixel values to have zero mean and unit variance. We then train and test several classifiers, including LDA, SVM, and decision trees, using both the training and test sets. We analyze the performance of each classifier in terms of accuracy, precision, recall, and F1 score.
-4.On a 3D plot, project onto three selected V-modes (columns) colored by their digit label.
+## 4. 3D plot
+On a 3D plot, project onto three selected V-modes (columns) colored by their digit label.
 ```
 # Select three V-modes
 V_modes = U[:, [2, 3, 5]]
@@ -57,6 +60,8 @@ plt.gcf().set_size_inches(12, 8)
 plt.savefig("3D_plot.png")
 plt.show()
 ```
+
+## Two Digits Linear Classifier
 • The given code trains and tests an LDA model for a specific pair of digits in the MNIST dataset. First, a binary classification dataset is created containing only the two specified digits. The dataset is split into training and testing sets using the train_test_split function. An LDA object is created and fit to the training data. The model is then used to predict the labels of the test data, and the confusion matrix and classification report are computed. The accuracy of the model for each digit is also calculated separately and printed to the console. This implementation demonstrates how to use LDA for binary classification tasks and evaluate its performance on specific digits in the MNIST dataset.Below is the code to train the data and test for specific digit
 ```
 # Create a binary classification dataset for the two digits
@@ -85,7 +90,9 @@ acc_digit2 = accuracy_score(y_test[y_test==1], y_pred[y_test==1])
 print(f"Accuracy for digit {digit1}: {acc_digit1}")
 print(f"Accuracy for digit {digit2}: {acc_digit2}")
 ```
-• The above code tests the ability of LDA to separate the digits 0 and 5 from the MNIST dataset. First, the dataset is filtered to only include images of digit 0 and 5. Then, the data is split into training and test sets using the train_test_split() function from scikit-learn. LDA is then fit to the training data using the LDA() function. The model is then used to predict the labels of the test data using the predict() method. Finally, the accuracy of the model is computed using the accuracy_score() function from scikit-learn and printed to the console. The resulting accuracy is a measure of how well the LDA model is able to distinguish between the digits 0 and 5. Below is the code to test the ability to seperate the digits
+
+## Two Digits Separation
+• The below code tests the ability of LDA to separate the digits 0 and 5 from the MNIST dataset. First, the dataset is filtered to only include images of digit 0 and 5. Then, the data is split into training and test sets using the train_test_split() function from scikit-learn. LDA is then fit to the training data using the LDA() function. The model is then used to predict the labels of the test data using the predict() method. Finally, the accuracy of the model is computed using the accuracy_score() function from scikit-learn and printed to the console. The resulting accuracy is a measure of how well the LDA model is able to distinguish between the digits 0 and 5. Below is the code to test the ability to seperate the digits
 ```
 # Define X and y
 X = mnist.data
@@ -113,6 +120,7 @@ accuracy = accuracy_score(y_test, y_pred)
 print("Accuracy for separating digit 0 and digit 5: {:.3f}".format(accuracy))
 ```
 
+## Performance Analysis
 • The code first selects the two digits (0 and 1) that are considered the hardest and easiest to separate. It then retrieves the corresponding images and labels from the MNIST dataset. The data is then split into training and testing sets using a 80/20 split.
 
 Next, three classifiers are trained on the training set: LDA, SVM, and decision tree classifiers. The LDA classifier uses the LDA() function to fit the model to the training data. The SVM classifier uses the SVC() function with a linear kernel and a regularization parameter C=1 to fit the model to the training data. The decision tree classifier uses the DecisionTreeClassifier() function with a max depth of 5 to fit the model to the training data.
