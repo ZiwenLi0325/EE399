@@ -179,6 +179,7 @@ Our analysis of the singular value spectrum indicates that the first 50 modes ca
 Figure 3 shows the projection of the digit data onto three selected V-modes. We can observe that the digits are well-separated in the PCA space, indicating that the principal components effectively capture the variation in the digit data.
 ### Classification
 ![figure4](Classification.png)
+Above is the colormap for the seperation of every two digits. From the colorbar we can notice that the easiest to seperate pair is (0,1), which has the accuracy score 0.9956698240866035, and the the hardest to seperate pair is (3,5), which has the accuracy score 0.9491676575505351.
 
 For the classification, we attempted to build a linear classifier to identify the two digits 1,7 and three digits 2, 3, and 8. We achieved an accuracy score of 0.99 for two digits and 0.935 for three digits, indicating that the classifier is fairly accurate at distinguishing these digits.
 ```
