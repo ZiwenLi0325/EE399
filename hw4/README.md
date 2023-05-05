@@ -1,24 +1,44 @@
 # EE399
 EE399 Homework submission
-# Homework Set 4：An Overview of Convolutional Neural Networks in Image Classification
+# Homework Set 4：Neural Network Applications and Comparisons
 
 Author: Ziwen(https://github.com/ZiwenLi0325)
 
-## Abstract
-Convolutional Neural Networks (CNNs) have revolutionized image classification and pattern recognition. In this report, we provide an overview of the theoretical background behind CNNs, including convolutional layers, pooling layers, and activation functions. We discuss the architecture of a typical CNN and the different types of layers involved. We also highlight some of the popular CNN models that have achieved state-of-the-art performance on various image classification tasks. Finally, we compare the performance of CNNs with other image classification methods and discuss the limitations of CNNs.
+## Abstract:
+In this lab report, we examine the application of neural networks to two different datasets. First, we fit a three-layer feed-forward neural network to a given dataset and compare its performance with different training data configurations. Next, we train a feed-forward neural network on the MNIST dataset and compare its performance to other classifiers like LSTM, SVM, and decision trees. The findings demonstrate the potential of neural networks in various scenarios and provide insights into their efficacy compared to other machine learning techniques.
 
-## I. Introduction and Overview
-Image classification is an essential task in computer vision, with applications ranging from object detection to facial recognition. Convolutional Neural Networks (CNNs) have emerged as the state-of-the-art method for image classification, outperforming traditional machine learning algorithms on various benchmarks. CNNs have a hierarchical architecture, consisting of multiple layers of convolution, pooling, and activation functions that learn feature representations from the input images. In this report, we provide a comprehensive overview of CNNs, including the theoretical background, architecture, and popular models used in image classification.
+## Sec. I. Introduction and Overview:
+In this lab report, we explore the implementation and performance of neural networks in two different scenarios: fitting a given dataset and classifying MNIST digit images. We aim to evaluate the efficiency and accuracy of neural networks and compare their results to other machine learning algorithms.
 
-## II. Theoretical Background
-CNNs are inspired by the visual cortex of the human brain and have been shown to be highly effective in image classification tasks. CNNs are composed of multiple layers, with each layer consisting of a set of learnable filters that convolve with the input image to extract features. The convolutional layers are followed by pooling layers that downsample the feature maps to reduce computational complexity. The activation functions introduce non-linearity into the model and allow for complex feature representations.
+## Sec. II. Theoretical Background:
+Neural networks are computational models inspired by biological neural systems, consisting of interconnected nodes or neurons. These models can learn from data through supervised learning, unsupervised learning, or reinforcement learning. In this lab report, we focus on feed-forward neural networks and supervised learning.
 
-One of the key advantages of CNNs is their ability to learn hierarchical representations of the input images. The initial layers of the network learn simple features such as edges and lines, while the deeper layers learn more complex features such as shapes and textures. The output of the final layer is a probability distribution over the different classes, and the class with the highest probability is chosen as the predicted label.
+## Sec. III. Algorithm Implementation and Development:
+(i) We fit the given dataset to a three-layer feed-forward neural network using the first 20 and first+last 10 data points as training data. We calculate the least-square error for each model over the training points and test data.
+(ii) We train a feed-forward neural network on the MNIST dataset, starting by computing the first 20 PCA modes of the digit images. We then build the neural network to classify the digits.
 
-Several popular CNN architectures have been proposed, including LeNet-5, AlexNet, VGG, Inception, and ResNet. These models vary in the number of layers, filter sizes, and network connectivity. For example, VGG consists of 19 layers and has a small filter size of 3x3, while ResNet has more than 100 layers and introduces skip connections to prevent the vanishing gradient problem.
+## Sec. IV. Computational Results:
+(i) The neural network demonstrates different performance levels when trained on various data configurations. The least-square errors indicate the accuracy of the models. Here are the results for I(i):
+```
+Epoch [100/1000], Loss: 501.4525
+Epoch [200/1000], Loss: 25.1516
+Epoch [300/1000], Loss: 13.6244
+Epoch [400/1000], Loss: 11.4410
+Epoch [500/1000], Loss: 9.5460
+Epoch [600/1000], Loss: 7.8256
+Epoch [700/1000], Loss: 6.5521
+Epoch [800/1000], Loss: 5.7648
+Epoch [900/1000], Loss: 5.3244
+Epoch [1000/1000], Loss: 5.0801
 
-CNNs have been shown to outperform other traditional image classification methods such as Support Vector Machines (SVMs), decision trees, and k-Nearest Neighbors (k-NN) on various benchmarks. However, CNNs also have some limitations, such as their high computational complexity and the need for large amounts of training data.
+Training error: 5.1040
+Test error: 20.0131
+```
+For I(iii), the test loss was found to be:
+```
+Test loss: 12.8579
+```
+(iv) Comparing the models fit in homework one to the neural networks in (ii) and (iii), we can observe that the neural network trained with the first 20 data points (ii) has a higher test error (20.0131) than the one trained with the first 10 and last 10 data points (iii) with a test loss of 12.8579. This suggests that the model in (iii) performs better on the test data than the model in (ii). When comparing these neural networks to the models in homework one, it is essential to analyze their respective errors, performance, and suitability for the given dataset. Depending on the specific models used in homework one, the neural networks in (ii) and (iii) might show better or worse performance, and a direct comparison would require analyzing each model's errors and complexities.
 
-## III. Algorithm Implementation and Development
-### A. Convolutional Layers
-The convolutional layers are the core building blocks of CNNs. Each convolutional layer consists of a set of learnable filters that convolve with the input image to extract features. The filters are represented by a set of weights that are learned during the training process.
+## Sec. V. Summary and Conclusions:
+This lab report highlights the potential of neural networks in fitting datasets and classifying digit images. The findings provide insights into the effectiveness of neural networks in comparison to other machine learning techniques like LSTM, SVM, and decision trees. The results indicate that neural networks offer promising performance in various scenarios, reinforcing their relevance in machine learning applications.
