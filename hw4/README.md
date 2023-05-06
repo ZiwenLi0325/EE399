@@ -318,6 +318,7 @@ Test accuracy: 94.700%
 Figure below is loss plot of neural network model.
 
 ![image](nn_accuracy_curve.png)
+
 The test accuracy of the LSTM model is 95.270%. The model was trained for 10 epochs, and the loss was computed after each epoch. The loss decreased with each epoch, indicating that the model was learning the underlying patterns in the data. The loss values for each epoch are shown below:
 ```
 Epoch 1 loss: 2.297
