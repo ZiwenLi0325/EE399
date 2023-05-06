@@ -315,6 +315,9 @@ Epoch 9 loss: 0.205
 Epoch 10 loss: 0.193
 Test accuracy: 94.700%
 ```
+Figure below is loss plot of neural network model.
+
+![image](nn_accuracy_curve.png)
 The test accuracy of the LSTM model is 95.270%. The model was trained for 10 epochs, and the loss was computed after each epoch. The loss decreased with each epoch, indicating that the model was learning the underlying patterns in the data. The loss values for each epoch are shown below:
 ```
 Epoch 1 loss: 2.297
@@ -338,5 +341,9 @@ The test accuracy of the decision tree classifier is 87.66%. The model was train
 Test accuracy: 87.66%
 ```
 The LSTM model achieved the highest test accuracy of 95.270%, indicating that it performed the best among the four models. The neural network model closely followed with a test accuracy of 94.700%. The SVM model performed slightly worse with an accuracy of 93.6%. The Decision Tree Classifier had the lowest test accuracy of 87.66%, showing that it is not as effective as the other models for this image classification task. Overall, the LSTM and neural network models demonstrated superior performance on the MNIST dataset compared to the SVM and Decision Tree Classifier models.
+
+Figure below is loss plot of LSTM model.
+
+![image](lstm_loss_accuracy_plot.png)
 ## Sec. V. Summary and Conclusions:
 This lab report highlights the potential of neural networks in fitting datasets and classifying digit images. The findings provide insights into the effectiveness of neural networks in comparison to other machine learning techniques like LSTM, SVM, and decision trees. The results indicate that neural networks offer promising performance in various scenarios, reinforcing their relevance in machine learning applications.
