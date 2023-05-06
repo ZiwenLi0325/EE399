@@ -333,7 +333,10 @@ The test accuracy of the SVM model is 93.6%. The model was trained on the traini
 ```
 Accuracy: 0.936
 ```
-
-(ii)
+The test accuracy of the decision tree classifier is 87.66%. The model was trained on the training data and evaluated on the test data. The accuracy was computed by comparing the predicted labels to the actual labels of the test data.
+```
+Test accuracy: 87.66%
+```
+The LSTM model achieved the highest test accuracy of 95.270%, indicating that it performed the best among the four models. The neural network model closely followed with a test accuracy of 94.700%. The SVM model performed slightly worse with an accuracy of 93.6%. The Decision Tree Classifier had the lowest test accuracy of 87.66%, showing that it is not as effective as the other models for this image classification task. Overall, the LSTM and neural network models demonstrated superior performance on the MNIST dataset compared to the SVM and Decision Tree Classifier models.
 ## Sec. V. Summary and Conclusions:
 This lab report highlights the potential of neural networks in fitting datasets and classifying digit images. The findings provide insights into the effectiveness of neural networks in comparison to other machine learning techniques like LSTM, SVM, and decision trees. The results indicate that neural networks offer promising performance in various scenarios, reinforcing their relevance in machine learning applications.
