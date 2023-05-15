@@ -13,3 +13,5 @@ Homework Set 2: [Face Image Analysis using Correlation, Eigenvalue Decomposition
 Homework Set 3: [Analysis of MNIST Data Set](https://github.com/ZiwenLi0325/EE399/tree/main/hw3)
 
 Homework Set 4: [An Overview of Convolutional Neural Networks in Image Classification](https://github.com/ZiwenLi0325/EE399/tree/main/hw4)
+
+Homework Set 5: [Neural Network-based Prediction of Lorenz System Dynamics](https://github.com/ZiwenLi0325/EE399/tree/main/hw5)
