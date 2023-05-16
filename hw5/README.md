@@ -10,6 +10,9 @@ This homework explores the application of various neural network architectures i
 ## Sec. I. Introduction and Overview:
 In this homework, we delve into the prediction of the Lorenz system dynamics, a classic example of a complex and chaotic system, using various neural network architectures. The objective is to train the models on specific $rho$ values (ρ=10, 28, 40) and evaluate their ability to generalize and accurately predict future states for other $rho$ values (ρ=17, 35). This study will help us understand the robustness and adaptability of different neural network models in the face of non-linear dynamical systems.
 
+![lorenz](lorenz.png)
+
+
 ## Sec. II. Theoretical Background:
 The Lorenz system is a set of three differential equations that describe the chaotic behavior of weather systems. Predicting the Lorenz system dynamics is a challenging task due to its non-linear and chaotic nature.
 
@@ -282,36 +285,36 @@ For ESN : Epoch: 29, Loss: 54.94445
 
 The FFNN-Purelin model had a relatively small mean squared error (MSE) for $rho  = $ 17 but struggled when predicting for $rho  = $ 35. This indicates that while the model can learn the dynamics of the Lorenz system under certain conditions, it may have difficulty generalizing this learning to new situations.
 ```
-- MSE for $rho  = $ 17: 0.00046261821989901364
-- MSE for $rho  = $ 35: 0.3871428668498993
+- MSE for rho  =  17: 0.00046261821989901364
+- MSE for rho  =  35: 0.3871428668498993
 ```
 ### Feed-forward Neural Network with Relu Activation (FFNN-Relu - Model 'FeedForwardNN')
 
 The FFNN-Relu performed reasonably well for both $rho  = $ 17 and $rho  = $ 35, suggesting some capacity for generalization due to the non-linear activation function, which can handle more complex function mapping.
 ```
-- MSE for $rho  = $ 17: 7.882964382588398e-06
-- MSE for $rho  = $ 35: 0.09199709445238113
+- MSE for rho  =  17: 7.882964382588398e-06
+- MSE for rho  =  35: 0.09199709445238113
 ```
 ### Simple Recurrent Neural Network (RNN - Model 'SimpleRNN')
 
 The Simple RNN model exhibited better performance than the FFNN models due to its ability to utilize previous state information to influence current predictions. However, it still had larger error margins, especially for $rho  = $ 35, indicating difficulties in capturing the long-term dependencies in the data.
 ```
-- MSE for $rho  = $ 17: 0.018040049821138382
-- MSE for $rho  = $ 35: 0.17212016880512238
+- MSE for rho  =  17: 0.018040049821138382
+- MSE for rho  =  35: 0.17212016880512238
 ```
 ### Long Short-Term Memory (LSTM)
 
 The LSTM outperformed both the FFNN-Purelin and FFNN-Relu models, despite a relatively higher MSE for $rho  = $ 35. The LSTM's ability to remember and forget information over long sequences makes it particularly suited for this kind of task.
 ```
-- MSE for $rho  = $ 17: 0.0024459792766720057
-- MSE for $rho  = $ 35: 0.4567260444164276
+- MSE for rho  =  17: 0.0024459792766720057
+- MSE for rho  =  35: 0.4567260444164276
 ```
 ### Echo State Network (ESN)
 
 The ESN showed a surprisingly strong performance for $rho  = $ 17, but had a very high error for $rho  = $ 35. This suggests that while the ESN's reservoir computing approach makes it well-suited for learning temporal patterns, it might struggle with more complex dynamics or certain parameter settings.
 ```
-- MSE for $rho  = $ 17: 0.0032536678481847048
-- MSE for $rho  = $ 35: 23.312599182128906
+- MSE for rho  =  17: 0.0032536678481847048
+- MSE for rho  =  35: 23.312599182128906
 ```
 ## Sec. V. Summary and Conclusions:
 This lab report highlights the potential of neural networks in fitting datasets and classifying digit images. The findings provide insights into the effectiveness of neural networks in comparison to other machine learning techniques like LSTM, SVM, and decision trees. The results indicate that neural networks offer promising performance in various scenarios, reinforcing their relevance in machine learning applications.
