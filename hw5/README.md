@@ -121,7 +121,7 @@ The comparison of these networks allows us to understand the trade-offs between 
 
 ## Sec. IV. Computational Results
 
-Feed-forward Neural Network with Purelin Activation (FFNN-Purelin): This model performed reasonably well in predicting the future state at t + ∆t for $\rho  = $ 10, 28, and 40. However, it exhibited limitations when trying to generalize to unseen ρ values ($\rho  = $ 17 and $\rho  = $ 35). This indicates that while the FFNN-Purelin can learn the dynamics of the Lorenz system for specific conditions, it may struggle to extrapolate this learning to new situations.
+Feed-forward Neural Network with Purelin Activation (FFNN-Purelin): This model performed reasonably well in predicting the future state at t + ∆t for $\rho$  =  10, 28, and 40. However, it exhibited limitations when trying to generalize to unseen ρ values ($\rho  = 17 $  and $\rho  = 35 $ ). This indicates that while the FFNN-Purelin can learn the dynamics of the Lorenz system for specific conditions, it may struggle to extrapolate this learning to new situations.
 ```
 For NN : Epoch: 0, Loss: 265.38974
 For NN : Epoch: 2, Loss: 221.21327
@@ -210,7 +210,7 @@ For SimpleRNN: Epoch: 44, Loss: 21.90574
 For SimpleRNN: Epoch: 46, Loss: 21.89048
 For SimpleRNN: Epoch: 48, Loss: 23.43219
 ```
-Long Short-Term Memory (LSTM): The LSTM outperformed both the FFNN-Purelin and FFNN-Relu models. The LSTM's ability to remember and forget information over long sequences makes it particularly suited for this kind of task. The LSTM was able to predict the chaotic behavior of the Lorenz system more accurately and showed better generalization capabilities for unseen ρ values ($\rho  = $ 17 and $\rho  = $ 35).
+Long Short-Term Memory (LSTM): The LSTM outperformed both the FFNN-Purelin and FFNN-Relu models. The LSTM's ability to remember and forget information over long sequences makes it particularly suited for this kind of task. The LSTM was able to predict the chaotic behavior of the Lorenz system more accurately and showed better generalization capabilities for unseen ρ values ($\rho  = 17 $  and $\rho  = 35 $ ).
 
 
 ```
@@ -283,35 +283,35 @@ For ESN : Epoch: 29, Loss: 54.94445
 
 ### Feed-forward Neural Network with Purelin Activation (FFNN-Purelin - Model 'Net')
 
-The FFNN-Purelin model had a relatively small mean squared error (MSE) for $\rho  = $ 17 but struggled when predicting for $\rho  = $ 35. This indicates that while the model can learn the dynamics of the Lorenz system under certain conditions, it may have difficulty generalizing this learning to new situations.
+The FFNN-Purelin model had a relatively small mean squared error (MSE) for $\rho  = 17 $  but struggled when predicting for $\rho  = 35 $ . This indicates that while the model can learn the dynamics of the Lorenz system under certain conditions, it may have difficulty generalizing this learning to new situations.
 ```
 - MSE for rho  =  17: 0.00046261821989901364
 - MSE for rho  =  35: 0.3871428668498993
 ```
 ### Feed-forward Neural Network with Relu Activation (FFNN-Relu - Model 'FeedForwardNN')
 
-The FFNN-Relu performed reasonably well for both $\rho  = $ 17 and $\rho  = $ 35, suggesting some capacity for generalization due to the non-linear activation function, which can handle more complex function mapping.
+The FFNN-Relu performed reasonably well for both $\rho  = 17 $  and $\rho  = 35 $ , suggesting some capacity for generalization due to the non-linear activation function, which can handle more complex function mapping.
 ```
 - MSE for rho  =  17: 7.882964382588398e-06
 - MSE for rho  =  35: 0.09199709445238113
 ```
 ### Simple Recurrent Neural Network (RNN - Model 'SimpleRNN')
 
-The Simple RNN model exhibited better performance than the FFNN models due to its ability to utilize previous state information to influence current predictions. However, it still had larger error margins, especially for $\rho  = $ 35, indicating difficulties in capturing the long-term dependencies in the data.
+The Simple RNN model exhibited better performance than the FFNN models due to its ability to utilize previous state information to influence current predictions. However, it still had larger error margins, especially for $\rho  = 35 $ , indicating difficulties in capturing the long-term dependencies in the data.
 ```
 - MSE for rho  =  17: 0.018040049821138382
 - MSE for rho  =  35: 0.17212016880512238
 ```
 ### Long Short-Term Memory (LSTM)
 
-The LSTM outperformed both the FFNN-Purelin and FFNN-Relu models, despite a relatively higher MSE for $\rho  = $ 35. The LSTM's ability to remember and forget information over long sequences makes it particularly suited for this kind of task.
+The LSTM outperformed both the FFNN-Purelin and FFNN-Relu models, despite a relatively higher MSE for $\rho  = 35 $ . The LSTM's ability to remember and forget information over long sequences makes it particularly suited for this kind of task.
 ```
 - MSE for rho  =  17: 0.0024459792766720057
 - MSE for rho  =  35: 0.4567260444164276
 ```
 ### Echo State Network (ESN)
 
-The ESN showed a surprisingly strong performance for $\rho  = $ 17, but had a very high error for $\rho  = $ 35. This suggests that while the ESN's reservoir computing approach makes it well-suited for learning temporal patterns, it might struggle with more complex dynamics or certain parameter settings.
+The ESN showed a surprisingly strong performance for $\rho  = 17 $ , but had a very high error for $\rho  = 35 $ . This suggests that while the ESN's reservoir computing approach makes it well-suited for learning temporal patterns, it might struggle with more complex dynamics or certain parameter settings.
 ```
 - MSE for rho  =  17: 0.0032536678481847048
 - MSE for rho  =  35: 23.312599182128906
