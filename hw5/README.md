@@ -304,17 +304,26 @@ The Simple RNN model exhibited better performance than the FFNN models due to it
 ```
 ### Long Short-Term Memory (LSTM)
 
-The LSTM outperformed both the FFNN-Purelin and FFNN-Relu models, despite a relatively higher MSE for $\rho  = 35 $ . The LSTM's ability to remember and forget information over long sequences makes it particularly suited for this kind of task.
+The LSTM outperformed both the FFNN-Purelin and FFNN-Relu models, despite a relatively higher MSE for $\rho  = 35$ . The LSTM's ability to remember and forget information over long sequences makes it particularly suited for this kind of task.
 ```
 - MSE for rho  =  17: 0.0024459792766720057
 - MSE for rho  =  35: 0.4567260444164276
 ```
 ### Echo State Network (ESN)
 
-The ESN showed a surprisingly strong performance for $\rho  = 17 $ , but had a very high error for $\rho  = 35 $ . This suggests that while the ESN's reservoir computing approach makes it well-suited for learning temporal patterns, it might struggle with more complex dynamics or certain parameter settings.
+The ESN showed a surprisingly strong performance for $\rho  = 17$ , but had a very high error for $\rho  = 35$ . This suggests that while the ESN's reservoir computing approach makes it well-suited for learning temporal patterns, it might struggle with more complex dynamics or certain parameter settings.
 ```
 - MSE for rho  =  17: 0.0032536678481847048
 - MSE for rho  =  35: 23.312599182128906
 ```
-## Sec. V. Summary and Conclusions:
-This lab report highlights the potential of neural networks in fitting datasets and classifying digit images. The findings provide insights into the effectiveness of neural networks in comparison to other machine learning techniques like LSTM, SVM, and decision trees. The results indicate that neural networks offer promising performance in various scenarios, reinforcing their relevance in machine learning applications.
+## V. Summary and Conclusions
+
+In this study, we implemented five different neural network architectures to predict the future states of the Lorenz system for different values of the parameter ρ. The models included two feed-forward networks with different activation functions (purelin and ReLU), a simple recurrent neural network (RNN), a long short-term memory network (LSTM), and an echo state network (ESN).
+
+Our results showed varied performance across different models and parameter settings. While feed-forward networks demonstrated reasonable capabilities in learning system dynamics, they struggled with generalizing their learning to new situations. The simple RNN showed improved performance due to its ability to utilize previous state information for current predictions but had difficulties in capturing long-term dependencies in the data.
+
+The LSTM, with its specialized architecture for remembering and forgetting information over long sequences, outperformed the feed-forward and simple RNN models. However, it still had a relatively high error for ρ = 35, indicating some limitations.
+
+The ESN demonstrated strong performance for ρ = 17 but struggled with more complex dynamics or certain parameter settings, as shown by its high error for ρ = 35. This suggests that while ESN's reservoir computing approach is well-suited for learning temporal patterns, it might face difficulties with more complex dynamics.
+
+In conclusion, while all models showed potential in predicting the dynamics of the Lorenz system, each presented unique strengths and challenges. This underscores the importance of model selection based on the specific requirements and complexities of the task at hand. It also highlights the potential of more complex models like LSTM and ESN, which leverage temporal information in data to enhance prediction performance.
