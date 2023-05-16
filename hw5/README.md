@@ -5,10 +5,10 @@ EE399 Homework submission
 Author: Ziwen(https://github.com/ZiwenLi0325)
 
 ## Abstract:
-This homework explores the application of various neural network architectures in predicting the dynamics of the Lorenz system for different $rho$ values. We train neural networks to advance the solution from time 't' to 't + ∆t' for ρ=10, 28, and 40, and then examine their prediction accuracy for ρ=17 and ρ=35. The performance of feed-forward networks, LSTM, Simple RNN, and Echo State Networks are compared, revealing their distinct strengths and weaknesses in predicting complex, non-linear dynamical systems.
+This homework explores the application of various neural network architectures in predicting the dynamics of the Lorenz system for different $\rho$ values. We train neural networks to advance the solution from time 't' to 't + ∆t' for ρ=10, 28, and 40, and then examine their prediction accuracy for ρ=17 and ρ=35. The performance of feed-forward networks, LSTM, Simple RNN, and Echo State Networks are compared, revealing their distinct strengths and weaknesses in predicting complex, non-linear dynamical systems.
 
 ## Sec. I. Introduction and Overview:
-In this homework, we delve into the prediction of the Lorenz system dynamics, a classic example of a complex and chaotic system, using various neural network architectures. The objective is to train the models on specific $rho$ values (ρ=10, 28, 40) and evaluate their ability to generalize and accurately predict future states for other $rho$ values (ρ=17, 35). This study will help us understand the robustness and adaptability of different neural network models in the face of non-linear dynamical systems.
+In this homework, we delve into the prediction of the Lorenz system dynamics, a classic example of a complex and chaotic system, using various neural network architectures. The objective is to train the models on specific $\rho$ values (ρ=10, 28, 40) and evaluate their ability to generalize and accurately predict future states for other $\rho$ values (ρ=17, 35). This study will help us understand the robustness and adaptability of different neural network models in the face of non-linear dynamical systems.
 
 ![lorenz](lorenz.png)
 
