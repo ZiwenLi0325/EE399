@@ -5,10 +5,10 @@ EE399 Homework submission
 Author: Ziwen(https://github.com/ZiwenLi0325)
 
 ## Abstract:
-This homework explores the application of various neural network architectures in predicting the dynamics of the Lorenz system for different rho values. We train neural networks to advance the solution from time 't' to 't + ∆t' for ρ=10, 28, and 40, and then examine their prediction accuracy for ρ=17 and ρ=35. The performance of feed-forward networks, LSTM, Simple RNN, and Echo State Networks are compared, revealing their distinct strengths and weaknesses in predicting complex, non-linear dynamical systems.
+This homework explores the application of various neural network architectures in predicting the dynamics of the Lorenz system for different $rho$ values. We train neural networks to advance the solution from time 't' to 't + ∆t' for ρ=10, 28, and 40, and then examine their prediction accuracy for ρ=17 and ρ=35. The performance of feed-forward networks, LSTM, Simple RNN, and Echo State Networks are compared, revealing their distinct strengths and weaknesses in predicting complex, non-linear dynamical systems.
 
 ## Sec. I. Introduction and Overview:
-In this homework, we delve into the prediction of the Lorenz system dynamics, a classic example of a complex and chaotic system, using various neural network architectures. The objective is to train the models on specific rho values (ρ=10, 28, 40) and evaluate their ability to generalize and accurately predict future states for other rho values (ρ=17, 35). This study will help us understand the robustness and adaptability of different neural network models in the face of non-linear dynamical systems.
+In this homework, we delve into the prediction of the Lorenz system dynamics, a classic example of a complex and chaotic system, using various neural network architectures. The objective is to train the models on specific $rho$ values (ρ=10, 28, 40) and evaluate their ability to generalize and accurately predict future states for other $rho$ values (ρ=17, 35). This study will help us understand the robustness and adaptability of different neural network models in the face of non-linear dynamical systems.
 
 ## Sec. II. Theoretical Background:
 The Lorenz system is a set of three differential equations that describe the chaotic behavior of weather systems. Predicting the Lorenz system dynamics is a challenging task due to its non-linear and chaotic nature.
@@ -29,21 +29,96 @@ In this homework, we will train these models and evaluate their effectiveness in
 
 The main focus of our work is to train various types of neural networks for the task of predicting future states of the Lorenz system, a popular mathematical system that exhibits chaotic behavior. Specifically, we train these networks to predict the state at time t + ∆t given the state at time t, for several different values of the parameter ρ.
 
-Training a Feed-forward Neural Network (NN): We first train a feed-forward NN with one hidden layer and the ReLU activation function. The network takes the state at time t as input and predicts the state at time t + ∆t as output. We train this network using the Adam optimizer and the mean squared error (MSE) loss function, with an additional L2 regularization term to prevent overfitting. The training process also includes a mechanism for early stopping if the loss does not improve for 5 consecutive epochs. The network is trained for ρ =10, 28 and 40, and we then evaluate its performance on predicting future states for ρ =17 and ρ =35.
+Training a Feed-forward Neural Network (NN): We first train a feed-forward NN with one hidden layer and the ReLU activation function. The network takes the state at time t as input and predicts the state at time t + ∆t as output. We train this network using the Adam optimizer and the mean squared error (MSE) loss function, with an additional L2 regularization term to prevent overfitting. The training process also includes a mechanism for early stopping if the loss does not improve for 5 consecutive epochs. The network is trained for $rho  = $10, 28 and 40, and we then evaluate its performance on predicting future states for $rho  = $17 and $rho  = $35.
 
 Comparing Different Network Architectures: After training the feed-forward NN, we compare its performance to that of other types of networks, including LSTM, RNN, and Echo State Networks (ESNs). We use the same general training procedure for all these networks, with each network being optimized to minimize the MSE loss plus an L2 regularization term, using the Adam or RMSprop optimizer. Each network is trained for a fixed number of epochs, with early stopping if the loss does not improve for 5 consecutive epochs.
 
+```
+class Net(nn.Module):
+    def __init__(self):
+        super(Net, self).__init__()
+        self.fc1 = nn.Linear(3, 50)
+        self.fc2 = nn.Linear(50, 50)
+        self.fc3 = nn.Linear(50, 3)
+
+    def forward(self, x):
+        x = purelin(self.fc1(x))
+        x = purelin(self.fc2(x))
+        x = purelin(self.fc3(x))
+        return x
+
+class FeedForwardNN(nn.Module):
+    def __init__(self):
+        super(FeedForwardNN, self).__init__()
+        self.fc1 = nn.Linear(3, 50)
+        self.fc2 = nn.Linear(50, 50)
+        self.fc3 = nn.Linear(50, 3)
+
+    def forward(self, x):
+        x = torch.relu(self.fc1(x))
+        x = torch.relu(self.fc2(x))
+        return self.fc3(x)
+```
 The LSTM network has a similar structure to the feed-forward NN, but it includes LSTM cells which have the ability to remember and forget information over time, making them particularly suited for time-series prediction tasks.
+```
+class LSTM(nn.Module):
+    def __init__(self):
+        super(LSTM, self).__init__()
+        self.lstm = nn.LSTM(3, 50, 1)
+        self.fc = nn.Linear(50, 3)
+
+    def forward(self, x):
+        x, _ = self.lstm(x)
+        x = self.fc(x)
+        return x
+```
 
 The RNN also processes the data sequentially like the LSTM, but it uses a simpler mechanism which can be less effective at capturing long-term dependencies.
 
+```
+class SimpleRNN(nn.Module):
+    def __init__(self, input_size, hidden_size, output_size):
+        super(SimpleRNN, self).__init__()
+        self.rnn = nn.RNN(input_size, hidden_size, batch_first=True)
+        self.fc = nn.Linear(hidden_size, output_size)
+        self.bn = nn.BatchNorm1d(hidden_size)  # add batch normalization
+        self.dropout = nn.Dropout(0.5)  # dropout layer
+
+    def forward(self, x):
+        x, _ = self.rnn(x.unsqueeze(1))  # add an extra dimension for timesteps
+        x = self.dropout(x)  # add dropout
+        x = self.fc(self.bn(x.squeeze(1)))  # apply batch normalization before fc
+        return x
+    
+```
 The ESN is a type of RNN where the weights of the hidden layer are randomly initialized and then kept fixed, while only the output weights are trained. Despite their simplicity, ESNs can be surprisingly effective at certain tasks.
+
+```
+class ESN(nn.Module):
+    def __init__(self, input_size, reservoir_size, output_size, alpha=0.5):
+        super(ESN, self).__init__()
+        self.input_weights = nn.Parameter(torch.randn(reservoir_size, input_size) / np.sqrt(input_size), requires_grad=False)
+        self.reservoir_weights = nn.Parameter(torch.randn(reservoir_size, reservoir_size) / np.sqrt(reservoir_size), requires_grad=False)
+        self.output_weights = nn.Linear(reservoir_size, output_size)
+
+        spectral_radius = np.max(np.abs(np.linalg.eigvals(self.reservoir_weights.detach().numpy())))
+        self.reservoir_weights.data = self.reservoir_weights.data / spectral_radius * alpha
+        self.reservoir_size = reservoir_size
+
+    def forward(self, input):
+        reservoir_state = torch.zeros(input.size(0), input.size(1), self.reservoir_size, dtype=torch.float32, device=input.device)
+        reservoir_state[:, 0, :] = torch.tanh(torch.mm(input[:,0,:], self.input_weights.t()))  # initialize reservoir state at t=0
+        for t in range(1, input.size(1)):  # start loop from t=1
+            reservoir_state[:, t, :] = torch.tanh(torch.mm(input[:,t,:], self.input_weights.t()) + torch.mm(reservoir_state[:, t-1, :], self.reservoir_weights.t()))
+        output = torch.sigmoid(self.output_weights(reservoir_state))  # changed activation function
+        return output
+```
 
 The comparison of these networks allows us to understand the trade-offs between complexity and predictive power in the context of chaotic time-series prediction. The results obtained from this comparison could be valuable for various applications, such as weather prediction or financial forecasting, where accurate prediction of chaotic systems is crucial.
 
 ## Sec. IV. Computational Results
 
-Feed-forward Neural Network with Purelin Activation (FFNN-Purelin): This model performed reasonably well in predicting the future state at t + ∆t for ρ = 10, 28, and 40. However, it exhibited limitations when trying to generalize to unseen ρ values (ρ = 17 and ρ = 35). This indicates that while the FFNN-Purelin can learn the dynamics of the Lorenz system for specific conditions, it may struggle to extrapolate this learning to new situations.
+Feed-forward Neural Network with Purelin Activation (FFNN-Purelin): This model performed reasonably well in predicting the future state at t + ∆t for $rho  = $ 10, 28, and 40. However, it exhibited limitations when trying to generalize to unseen ρ values ($rho  = $ 17 and $rho  = $ 35). This indicates that while the FFNN-Purelin can learn the dynamics of the Lorenz system for specific conditions, it may struggle to extrapolate this learning to new situations.
 ```
 For NN : Epoch: 0, Loss: 265.38974
 For NN : Epoch: 2, Loss: 221.21327
@@ -132,7 +207,7 @@ For SimpleRNN: Epoch: 44, Loss: 21.90574
 For SimpleRNN: Epoch: 46, Loss: 21.89048
 For SimpleRNN: Epoch: 48, Loss: 23.43219
 ```
-Long Short-Term Memory (LSTM): The LSTM outperformed both the FFNN-Purelin and FFNN-Relu models. The LSTM's ability to remember and forget information over long sequences makes it particularly suited for this kind of task. The LSTM was able to predict the chaotic behavior of the Lorenz system more accurately and showed better generalization capabilities for unseen ρ values (ρ = 17 and ρ = 35).
+Long Short-Term Memory (LSTM): The LSTM outperformed both the FFNN-Purelin and FFNN-Relu models. The LSTM's ability to remember and forget information over long sequences makes it particularly suited for this kind of task. The LSTM was able to predict the chaotic behavior of the Lorenz system more accurately and showed better generalization capabilities for unseen ρ values ($rho  = $ 17 and $rho  = $ 35).
 
 
 ```
@@ -205,38 +280,38 @@ For ESN : Epoch: 29, Loss: 54.94445
 
 ### Feed-forward Neural Network with Purelin Activation (FFNN-Purelin - Model 'Net')
 
-The FFNN-Purelin model had a relatively small mean squared error (MSE) for ρ = 17 but struggled when predicting for ρ = 35. This indicates that while the model can learn the dynamics of the Lorenz system under certain conditions, it may have difficulty generalizing this learning to new situations.
+The FFNN-Purelin model had a relatively small mean squared error (MSE) for $rho  = $ 17 but struggled when predicting for $rho  = $ 35. This indicates that while the model can learn the dynamics of the Lorenz system under certain conditions, it may have difficulty generalizing this learning to new situations.
 ```
-- MSE for ρ = 17: 0.00046261821989901364
-- MSE for ρ = 35: 0.3871428668498993
+- MSE for $rho  = $ 17: 0.00046261821989901364
+- MSE for $rho  = $ 35: 0.3871428668498993
 ```
 ### Feed-forward Neural Network with Relu Activation (FFNN-Relu - Model 'FeedForwardNN')
 
-The FFNN-Relu performed reasonably well for both ρ = 17 and ρ = 35, suggesting some capacity for generalization due to the non-linear activation function, which can handle more complex function mapping.
+The FFNN-Relu performed reasonably well for both $rho  = $ 17 and $rho  = $ 35, suggesting some capacity for generalization due to the non-linear activation function, which can handle more complex function mapping.
 ```
-- MSE for ρ = 17: 7.882964382588398e-06
-- MSE for ρ = 35: 0.09199709445238113
+- MSE for $rho  = $ 17: 7.882964382588398e-06
+- MSE for $rho  = $ 35: 0.09199709445238113
 ```
 ### Simple Recurrent Neural Network (RNN - Model 'SimpleRNN')
 
-The Simple RNN model exhibited better performance than the FFNN models due to its ability to utilize previous state information to influence current predictions. However, it still had larger error margins, especially for ρ = 35, indicating difficulties in capturing the long-term dependencies in the data.
+The Simple RNN model exhibited better performance than the FFNN models due to its ability to utilize previous state information to influence current predictions. However, it still had larger error margins, especially for $rho  = $ 35, indicating difficulties in capturing the long-term dependencies in the data.
 ```
-- MSE for ρ = 17: 0.018040049821138382
-- MSE for ρ = 35: 0.17212016880512238
+- MSE for $rho  = $ 17: 0.018040049821138382
+- MSE for $rho  = $ 35: 0.17212016880512238
 ```
 ### Long Short-Term Memory (LSTM)
 
-The LSTM outperformed both the FFNN-Purelin and FFNN-Relu models, despite a relatively higher MSE for ρ = 35. The LSTM's ability to remember and forget information over long sequences makes it particularly suited for this kind of task.
+The LSTM outperformed both the FFNN-Purelin and FFNN-Relu models, despite a relatively higher MSE for $rho  = $ 35. The LSTM's ability to remember and forget information over long sequences makes it particularly suited for this kind of task.
 ```
-- MSE for ρ = 17: 0.0024459792766720057
-- MSE for ρ = 35: 0.4567260444164276
+- MSE for $rho  = $ 17: 0.0024459792766720057
+- MSE for $rho  = $ 35: 0.4567260444164276
 ```
 ### Echo State Network (ESN)
 
-The ESN showed a surprisingly strong performance for ρ = 17, but had a very high error for ρ = 35. This suggests that while the ESN's reservoir computing approach makes it well-suited for learning temporal patterns, it might struggle with more complex dynamics or certain parameter settings.
+The ESN showed a surprisingly strong performance for $rho  = $ 17, but had a very high error for $rho  = $ 35. This suggests that while the ESN's reservoir computing approach makes it well-suited for learning temporal patterns, it might struggle with more complex dynamics or certain parameter settings.
 ```
-- MSE for ρ = 17: 0.0032536678481847048
-- MSE for ρ = 35: 23.312599182128906
+- MSE for $rho  = $ 17: 0.0032536678481847048
+- MSE for $rho  = $ 35: 23.312599182128906
 ```
 ## Sec. V. Summary and Conclusions:
 This lab report highlights the potential of neural networks in fitting datasets and classifying digit images. The findings provide insights into the effectiveness of neural networks in comparison to other machine learning techniques like LSTM, SVM, and decision trees. The results indicate that neural networks offer promising performance in various scenarios, reinforcing their relevance in machine learning applications.
