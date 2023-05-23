@@ -61,7 +61,7 @@ A plot of validation error over the training epochs was also generated to provid
 ## Sec. IV. Computational Results
 ![validation_error](SST_validation_error.png "Validation error vs. epochs")
 
-Figure 2: Validation error vs. epochs
+Figure 2: Validation error vs. epochs, with a time lag of 10 and noise level of 0.0, 0.1, 0.2, 0.5, and 2.0.
 
 The computational results for the training of the LSTM/Decoder (SHRED) model for predicting sea-surface temperatures were insightful. The model was trained with an emphasis on evaluating the influence of the time lag variable on its predictive performance. One of the significant outcomes observed during training was when the model was at the 700th epoch.
 
@@ -72,7 +72,7 @@ The presence of a validation error indicates that the model still has room to im
 
 ![lag_performance](lag_performance.png "Performance vs. time lag")
 
-Figure 3: Performance vs. time lag
+Figure 3: Performance vs. time lag, with a time lag of 10, 20, 30, 40, and 50.
 
 The model was trained using different time lag values, including 10, 20, 30, 40, and 50.
 
@@ -80,7 +80,7 @@ At a time lag of 10, the validation error was observed to be 0.1273. With an inc
 
 ![noise_scale_performance](noise_scale_performance.png "Performance vs. noise")
 
-Figure 4: Performance vs. noise
+Figure 4: Performance vs. noise, with a noise level of 0.0 and 2.0.
 
 The impact of different noise levels on the training of the LSTM/Decoder (SHRED) model was evaluated by introducing varying levels of Gaussian noise into the sea-surface temperature data. The noise levels ranged from 0.0 to 2.0, and the corresponding validation errors observed during the training were analyzed.
 
@@ -99,7 +99,7 @@ This suggests that an increased time lag, up to a point, appears to improve the 
 
 ![performance_Sensors](performance_Sensors.png "Performance vs. number of sensors")
 
-Figure 5: Performance vs. number of sensors
+Figure 5: Performance vs. number of sensors, with 1, 2, and 3 sensors.
 
 As the final part of the computational study, the impact of the number of sensors on the model's performance was evaluated. This analysis aims to determine the relationship between the number of sensors incorporated into the model and its resulting accuracy. The model was trained separately with 1, 2, and 3 sensors, each with a different resulting validation error as described below:
 
