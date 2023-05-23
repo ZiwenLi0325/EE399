@@ -12,7 +12,7 @@ This study explores the impacts of varying time lag, noise, and number of sensor
 The application of machine learning algorithms to predict sea-surface temperatures is a vital task in the domain of climatology. This report investigates the application of an LSTM/decoder model, specifically the SHRED model, to this problem. We assess the performance of the model under different conditions, examining the effects of time lag, the introduction of Gaussian noise, and the number of sensors used.
 
 ![recon](recon.png "Reconstruction image of SST")
-
+Figure 1: Reconstruction of SST using SHRED model
 
 ## Sec. II. Theoretical Background:
 The SHRED model is a deep learning architecture, specifically an encoder-decoder model with LSTM (Long Short-Term Memory) units. This model's purpose is to predict sea-surface temperature data, which inherently involves time-series prediction. LSTMs are particularly suited for this task as they have the ability to capture long-term dependencies within a sequence of data due to their gating mechanisms that control information flow. They mitigate the issues of vanishing or exploding gradients, thus enabling the network to learn from data over many timesteps. In the context of this work, the LSTM/decoder architecture allows the SHRED model to encode past sea-surface temperatures and then decode the encoded information to predict future temperatures.
@@ -59,16 +59,59 @@ plt.show()
 A plot of validation error over the training epochs was also generated to provide visual insight into the model's learning progression. The impact of changing time lag, noise levels, and number of sensors on the model's performance was investigated by repeating this process with different configurations of these variables.
 
 ## Sec. IV. Computational Results
-
-Our results showed that the model's performance varied with changes in time lag, noise, and the number of sensors. Notably, an increase in noise tended to decrease model performance, while the impact of changing the time lag and the number of sensors was more complex and depended on the specific configuration of these variables.
-
 ![validation_error](SST_validation_error.png "Validation error vs. epochs")
+Figure 2: Validation error vs. epochs
+The computational results for the training of the LSTM/Decoder (SHRED) model for predicting sea-surface temperatures were insightful. The model was trained with an emphasis on evaluating the influence of the time lag variable on its predictive performance. One of the significant outcomes observed during training was when the model was at the 700th epoch.
 
-![noise_scale_performance](noise_scale_performance.png "Performance vs. noise")
+At this stage, a validation error of 0.1114 was recorded. This error represents a difference between the model's predicted sea-surface temperatures and the actual measurements from the validation dataset. In the context of this study, it provides a measure of how well the model is learning and adapting during training.
+
+The presence of a validation error indicates that the model still has room to improve its predictive capabilities. Moreover, since the error was obtained at the 700th epoch, it suggests that the model was in the process of converging towards a solution. The optimization procedure, guided by the backpropagation algorithm and the defined learning rate, was driving the model's parameters towards values that minimize the error.
+
 
 ![lag_performance](lag_performance.png "Performance vs. time lag")
+Figure 3: Performance vs. time lag
+The model was trained using different time lag values, including 10, 20, 30, 40, and 50.
+
+At a time lag of 10, the validation error was observed to be 0.1273. With an increased time lag of 20, the validation error decreased to 0.1127. This decreasing trend continued as the time lag increased, with the lowest validation error of 0.1079 observed at a time lag of 50.
+
+![noise_scale_performance](noise_scale_performance.png "Performance vs. noise")
+Figure 4: Performance vs. noise
+
+The impact of different noise levels on the training of the LSTM/Decoder (SHRED) model was evaluated by introducing varying levels of Gaussian noise into the sea-surface temperature data. The noise levels ranged from 0.0 to 2.0, and the corresponding validation errors observed during the training were analyzed.
+
+For a noise level of 0.0 (i.e., no added noise), the validation error obtained at the 920th epoch was 0.1077. As noise levels increased, it was observed that the validation error correspondingly increased, and the epoch at which this occurred decreased, implying that the model performance deteriorated under noisier conditions.
+
+At a noise level of 0.1, a validation error of 0.1237 was observed at the 740th epoch. A further increase in noise to 0.2 resulted in a validation error of 0.1376 at the 920th epoch.
+
+When the noise level was increased to 0.5, the validation error rose significantly to 0.1831, with the model reaching this at the 580th epoch. A trend can be observed in these results, indicating that as the noise level increased, the model took fewer epochs to reach a relatively high validation error.
+
+At the extreme noise level of 2.0, the validation error reached 0.2645 at the early stage of the 340th epoch.
+
+These results suggest that the model's performance is significantly impacted by the level of noise in the data. Higher noise levels degrade the model's performance more quickly and severely. This is an expected outcome as noise obscures the underlying patterns in the data, making it more challenging for the model to learn effectively.
+
+
+This suggests that an increased time lag, up to a point, appears to improve the model's ability to predict sea-surface temperatures accurately. However, there could be a trade-off in terms of computational complexity and time, as processing larger time lags requires more resources.
 
 ![performance_Sensors](performance_Sensors.png "Performance vs. number of sensors")
+Figure 5: Performance vs. number of sensors
+
+As the final part of the computational study, the impact of the number of sensors on the model's performance was evaluated. This analysis aims to determine the relationship between the number of sensors incorporated into the model and its resulting accuracy. The model was trained separately with 1, 2, and 3 sensors, each with a different resulting validation error as described below:
+
+Single Sensor: The model, when trained with a single sensor, achieved a validation error of approximately 0.2692 at the 480th epoch.
+
+Two Sensors: Increasing the sensor count to two resulted in a validation error of approximately 0.2632 at the 280th epoch.
+
+Three Sensors: The model, when further enhanced with three sensors, returned a validation error of about 0.2639 at the 340th epoch.
 ## V. Summary and Conclusions
 
-This study provides valuable insights into the performance characteristics of the SHRED model on sea-surface temperature prediction tasks. It highlights the impact of various factors on model performance, which could guide future work in data collection and model tuning. Future work could further explore these factors and investigate additional ways to improve the performance of LSTM-based models on this task.
+This project aimed to implement and evaluate an LSTM-based model for predicting sea-surface temperatures. This predictive model leverages historical data, processed through varying time lags, levels of Gaussian noise, and different numbers of sensors to understand their impact on the performance of the model.
+
+Through careful computational experiments, we found that the model's performance varied with different time lags, noise levels, and sensor counts. In general, increasing time lag resulted in a small but not necessarily significant improvement in performance, up to a point. Beyond a certain time lag, the validation error did not improve, suggesting a limit to the model's ability to use historical data for prediction.
+
+The addition of Gaussian noise to the data, as expected, generally resulted in an increase in validation error. This result underscores the model's sensitivity to noise and highlights the importance of clean, accurate data for model performance.
+
+In terms of the number of sensors used, it was found that increasing the number of sensors didn't significantly improve the validation error. This suggests that there may be a limit to the value of adding more sensors, or that additional information from extra sensors may not provide significantly useful information for the model.
+
+These findings provide useful insights into the model's performance under varying conditions. However, they also suggest a need for further systematic studies to identify optimal parameters and strategies to enhance the model's predictive performance. Furthermore, while this study focused on sea-surface temperature prediction, the findings may have broader implications for other time-series prediction tasks.
+
+In conclusion, while the LSTM-based model demonstrated promising results for sea-surface temperature prediction, its performance is influenced by several factors, including time lag, noise level, and the number of sensors used. Further research is needed to optimize these parameters and enhance the model's generalizability and performance in real-world applications.
