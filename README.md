@@ -15,3 +15,5 @@ Homework Set 3: [Analysis of MNIST Data Set](https://github.com/ZiwenLi0325/EE39
 Homework Set 4: [An Overview of Convolutional Neural Networks in Image Classification](https://github.com/ZiwenLi0325/EE399/tree/main/hw4)
 
 Homework Set 5: [Neural Network-based Prediction of Lorenz System Dynamics](https://github.com/ZiwenLi0325/EE399/tree/main/hw5)
+
+Homework Set 6: [Analysis of SHRED Model Performance on Sea-Surface Temperature Data](https://github.com/ZiwenLi0325/EE399/tree/main/hw6)
