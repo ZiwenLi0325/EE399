@@ -64,9 +64,9 @@ Our results showed that the model's performance varied with changes in time lag,
 
 ![validation_error](SST_validation_error.png "Validation error vs. epochs")
 
-![performance_noise](performance_noise.png "Performance vs. noise")
+![noise_scale_performance](noise_scale_performance.png "Performance vs. noise")
 
-![performance_lag](performance_lag.png "Performance vs. time lag")
+![lag_performance](lag_performance.png "Performance vs. time lag")
 
 ![performance_Sensors](performance_Sensors.png "Performance vs. number of sensors")
 ## V. Summary and Conclusions
